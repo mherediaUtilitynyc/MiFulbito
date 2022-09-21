@@ -1,3 +1,7 @@
+enableFeaturePreview("VERSION_CATALOGS")
+apply {
+    from("catalog.gradle.kts")
+}
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -13,4 +17,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MiFulbito"
-include ':app'
+include(":app")
