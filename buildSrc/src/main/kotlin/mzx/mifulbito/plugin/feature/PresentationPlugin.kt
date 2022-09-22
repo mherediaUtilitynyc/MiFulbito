@@ -1,11 +1,10 @@
 package mzx.mifulbito.plugin.feature
 
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-import mzx.mifulbito.plugin.bundles
-import mzx.mifulbito.plugin.libs
 import com.android.build.gradle.BaseExtension
 import mzx.mifulbito.Versions
+import mzx.mifulbito.plugin.libs
+import org.gradle.api.Plugin
+import org.gradle.api.Project
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.dependencies
 
@@ -33,35 +32,33 @@ class PresentationPlugin : Plugin<Project> {
 
     private fun configureDependencies(project: Project) {
 
+
         project.dependencies {
-            addImplementation( project.libs("coreKtx"))
-            addImplementation( project.libs("composeUi"))
-            addImplementation( project.libs("composeUiPreview"))
+            arrayOf(
+                "coreKtx", "composeUi", "composeUiPreview", "composeMaterial3",
+                "lifecycleKtx", "activityCompose", "hilt"
+            ).forEach { addImplementation(project.libs(it)) }
+            //add("kapt", project.libs("hiltKapt"))
+            arrayOf("composeUiTooling", "composeUiTestManifest").forEach {
+                addDebugImplementation(
+                    project.libs(it)
+                )
+            }
 
-            addImplementation( project.libs("composeMaterial3"))
-            addImplementation( project.libs("lifecycleKtx"))
-            addImplementation( project.libs("activityCompose"))
-
-            addImplementation( project.libs("hilt"))
-//            add("kapt", project.libs("hiltKapt"))
-
-            addDebugImplementation(project.libs("composeUiTooling"))
-            addDebugImplementation(project.libs("composeUiTestManifest"))
-
-            addTestImplementation(project.libs("junit"))
-            addTestImplementation(project.libs("mockk"))
-
-            addAndroidTestImplementation(project.libs("extJunit"))
-            addAndroidTestImplementation(project.libs("expressoCore"))
-            addAndroidTestImplementation(project.libs("composeUiTestJunit4"))
-            addAndroidTestImplementation(project.libs("mockkAndroid"))
+            arrayOf("junit", "mockk").forEach { addTestImplementation(project.libs(it)) }
+            arrayOf(
+                "extJunit",
+                "expressoCore",
+                "composeUiTestJunit4",
+                "mockkAndroid"
+            ).forEach { addAndroidTestImplementation(project.libs(it)) }
 
 //            add("implementation", project.libs("jsr305"))
         }
     }
 }
 
-private fun DependencyHandlerScope.addTestImplementation(libs: String) {
+fun DependencyHandlerScope.addTestImplementation(libs: String) {
     add("testImplementation", libs)
 }
 
