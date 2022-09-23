@@ -36,7 +36,7 @@ class PresentationPlugin : Plugin<Project> {
         project.dependencies {
             arrayOf(
                 "coreKtx", "composeUi", "composeUiPreview", "composeMaterial3",
-                "lifecycleKtx", "activityCompose", "hilt"
+                "lifecycleKtx", "activityCompose", "hilt","arrowKt"
             ).forEach { addImplementation(project.libs(it)) }
             //add("kapt", project.libs("hiltKapt"))
             arrayOf("composeUiTooling", "composeUiTestManifest").forEach {

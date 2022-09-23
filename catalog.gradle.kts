@@ -12,9 +12,10 @@ dependencyResolutionManagement {
             version("composeMaterial3", "1.0.0-beta02")
             version("lifecycleKtx", "2.5.1")
             version("activityCompose", "1.5.1")
-            version("spek","2.0.19")
+            version("spek", "2.0.19")
             version("kotlinReflect", "1.7.10")
             version("kotlinVersion", "1.6.10")
+            version("arrowVersion", "1.1.2")
 
             alias("coreKtx").to("androidx.core", "core-ktx").versionRef("coreKtx")
 
@@ -45,11 +46,15 @@ dependencyResolutionManagement {
             alias("activityCompose").to("androidx.activity", "activity-compose")
                 .versionRef("activityCompose")
 
-            alias("kotlinReflect").to("org.jetbrains.kotlin","kotlin-reflect").versionRef("kotlinVersion")
+            alias("kotlinReflect").to("org.jetbrains.kotlin", "kotlin-reflect")
+                .versionRef("kotlinVersion")
             //estImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
-            alias("spekDls").to("org.spekframework.spek2","spek-dsl-jvm").versionRef("spek")
+            alias("spekDls").to("org.spekframework.spek2", "spek-dsl-jvm").versionRef("spek")
             //testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
-            alias("spekRunner").to("org.spekframework.spek2","spek-runner-junit5").versionRef("spek")
+            alias("spekRunner").to("org.spekframework.spek2", "spek-runner-junit5")
+                .versionRef("spek")
+            alias("arrowKt").to("io.arrow-kt", "arrow-core").versionRef("arrowVersion")
+//            implementation(platform("io.arrow-kt:arrow-stack:1.1.2"))
         }
     }
 }
