@@ -1,4 +1,4 @@
-package mzx.mifulbito.plugin
+package mzx.mifulbito.plugin.feature
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency

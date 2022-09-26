@@ -2,7 +2,6 @@ package mzx.mifulbito.plugin.feature
 
 import com.android.build.gradle.BaseExtension
 import mzx.mifulbito.Versions
-import mzx.mifulbito.plugin.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.DependencyHandlerScope
@@ -70,6 +69,6 @@ private fun DependencyHandlerScope.addDebugImplementation(libs: String) {
     add("debugImplementation", libs)
 }
 
-private fun DependencyHandlerScope.addImplementation(libs: String) {
+fun DependencyHandlerScope.addImplementation(libs: String) {
     add("implementation", libs)
 }

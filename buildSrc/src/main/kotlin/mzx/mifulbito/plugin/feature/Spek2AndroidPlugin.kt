@@ -5,7 +5,6 @@ import de.mannodermaus.gradle.plugins.junit5.AndroidJUnitPlatformExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import mzx.mifulbito.plugin.libs
 
 class Spek2AndroidPlugin : Plugin<Project> {
 

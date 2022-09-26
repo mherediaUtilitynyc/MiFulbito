@@ -29,4 +29,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MiFulbito"
 include(":app")
-include("login-feature:presentation")
+include(
+    "login-feature:presentation",
+    "login-feature:domain"
+)
