@@ -31,5 +31,6 @@ rootProject.name = "MiFulbito"
 include(":app")
 include(
     "login-feature:presentation",
-    "login-feature:domain"
+    "login-feature:domain",
+    "login-feature:demo"
 )

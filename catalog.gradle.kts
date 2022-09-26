@@ -17,6 +17,8 @@ dependencyResolutionManagement {
             version("kotlinVersion", "1.6.10")
             version("arrowVersion", "1.1.2")
             version("javaxInject", "1")
+            version("appCompatVersion", "1.5.1")
+
 
             alias("kotlin").to("org.jetbrains.kotlin", "kotlin-stdlib").versionRef("kotlinVersion")
             alias("coreKtx").to("androidx.core", "core-ktx").versionRef("coreKtx")
@@ -58,6 +60,7 @@ dependencyResolutionManagement {
             alias("arrowKt").to("io.arrow-kt", "arrow-core").versionRef("arrowVersion")
 //            implementation(platform("io.arrow-kt:arrow-stack:1.1.2"))
             alias("javaxInject").to("javax.inject", "javax.inject").versionRef("javaxInject")
+            alias("appCompatVersion").to("androidx.appcompat","appcompat").versionRef("appCompatVersion")
         }
     }
 }
