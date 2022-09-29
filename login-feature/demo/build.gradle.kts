@@ -49,6 +49,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 dependencies {
 
+    implementation(project(mapOf("path" to ":login-feature:presentation")))
+    implementation(project(mapOf("path" to ":login-feature:domain")))
+
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
     implementation(libs.coreKtx)
     implementation(libs.composeUi)
     implementation(libs.composeUiPreview)
@@ -59,7 +64,6 @@ dependencies {
     implementation(libs.appCompatVersion)
 
     implementation(libs.hilt)
-    implementation(project(mapOf("path" to ":login-feature:presentation")))
     kapt(libs.hiltKapt)
 
     debugImplementation(libs.composeUiTooling)

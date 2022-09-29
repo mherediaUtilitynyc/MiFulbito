@@ -19,6 +19,7 @@ class PresentationPlugin : Plugin<Project> {
         project.pluginManager.apply("com.android.library")
         project.pluginManager.apply("org.jetbrains.kotlin.android")
         project.pluginManager.apply("kotlin-kapt")
+        project.pluginManager.apply("mzx.mifulbito.plugin.feature.spek2Android")
 //        project.pluginManager.apply("dagger.hilt.android.plugin")
         project.extensions.getByType(BaseExtension::class.java).let {
             it.setCompileSdkVersion(Versions.Android.compileSdk)
@@ -33,9 +34,15 @@ class PresentationPlugin : Plugin<Project> {
 
 
         project.dependencies {
+
+            add(
+                "implementation",
+                project.findProject(":login-feature:domain")
+                    ?: throw IllegalArgumentException("Project not founded")
+            )
             arrayOf(
                 "coreKtx", "composeUi", "composeUiPreview", "composeMaterial3",
-                "lifecycleKtx", "activityCompose", "hilt","arrowKt"
+                "lifecycleKtx", "activityCompose", "hilt", "arrowKt"
             ).forEach { addImplementation(project.libs(it)) }
             //add("kapt", project.libs("hiltKapt"))
             arrayOf("composeUiTooling", "composeUiTestManifest").forEach {
@@ -44,7 +51,12 @@ class PresentationPlugin : Plugin<Project> {
                 )
             }
 
-            arrayOf("junit", "mockk").forEach { addTestImplementation(project.libs(it)) }
+
+            arrayOf(
+                "junit",
+                "mockk",
+                "coroutinesTest"
+            ).forEach { addTestImplementation(project.libs(it)) }
             arrayOf(
                 "extJunit",
                 "expressoCore",
@@ -52,7 +64,6 @@ class PresentationPlugin : Plugin<Project> {
                 "mockkAndroid"
             ).forEach { addAndroidTestImplementation(project.libs(it)) }
 
-//            add("implementation", project.libs("jsr305"))
         }
     }
 }

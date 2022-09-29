@@ -18,6 +18,7 @@ dependencyResolutionManagement {
             version("arrowVersion", "1.1.2")
             version("javaxInject", "1")
             version("appCompatVersion", "1.5.1")
+            version("coroutinesTest", "1.6.4")
 
 
             alias("kotlin").to("org.jetbrains.kotlin", "kotlin-stdlib").versionRef("kotlinVersion")
@@ -52,15 +53,15 @@ dependencyResolutionManagement {
 
             alias("kotlinReflect").to("org.jetbrains.kotlin", "kotlin-reflect")
                 .versionRef("kotlinVersion")
-            //estImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
             alias("spekDls").to("org.spekframework.spek2", "spek-dsl-jvm").versionRef("spek")
-            //testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
             alias("spekRunner").to("org.spekframework.spek2", "spek-runner-junit5")
                 .versionRef("spek")
             alias("arrowKt").to("io.arrow-kt", "arrow-core").versionRef("arrowVersion")
-//            implementation(platform("io.arrow-kt:arrow-stack:1.1.2"))
             alias("javaxInject").to("javax.inject", "javax.inject").versionRef("javaxInject")
-            alias("appCompatVersion").to("androidx.appcompat","appcompat").versionRef("appCompatVersion")
+            alias("appCompatVersion").to("androidx.appcompat", "appcompat")
+                .versionRef("appCompatVersion")
+            alias("coroutinesTest").to("org.jetbrains.kotlinx", "kotlinx-coroutines-test")
+                .versionRef("coroutinesTest")
         }
     }
 }
