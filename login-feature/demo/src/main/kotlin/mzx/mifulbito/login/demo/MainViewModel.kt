@@ -6,10 +6,11 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import mzx.mifulbito.login.presentation.LoginStateMachine
+import mzx.mifulbito.login.presentation.MVI
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val stateMachine: LoginStateMachine
+    private val stateMachine: MVI<LoginStateMachine.Event, LoginStateMachine.State>
 ) : ViewModel() {
     init {
         stateMachine.viewModelScope = viewModelScope

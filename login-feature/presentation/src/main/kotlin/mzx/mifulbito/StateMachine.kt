@@ -3,11 +3,10 @@ package mzx.mifulbito
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 
-class StateMachine<STATE : Any, EVENT : Any, SIDE_EFFECT : Any> private constructor(
+internal class StateMachine<STATE : Any, EVENT : Any, SIDE_EFFECT : Any> private constructor(
     private val graph: Graph<STATE, EVENT, SIDE_EFFECT>
 ) {
 
-    //    private val stateRef = AtomicReference<STATE>(graph.initialState)
     private val _state = mutableStateOf(graph.initialState)
 
     val state: State<STATE>

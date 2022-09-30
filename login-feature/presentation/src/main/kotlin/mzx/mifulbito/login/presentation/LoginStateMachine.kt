@@ -2,18 +2,16 @@ package mzx.mifulbito.login.presentation
 
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import mzx.mifulbito.StateMachine
-import mzx.mifulbito.domain.login.RegisterLoginUseCase
 
 @JvmSuppressWildcards
-class LoginStateMachine @Inject  constructor(
-     private val listener: (
+class LoginStateMachine @Inject constructor(
+    private val listener: (
         SideEffect, CoroutineScope,
-            (Event) -> Unit
+        (Event) -> Unit
     ) -> Unit
-) {
-    var viewModelScope: CoroutineScope? = null
+) : MVI<LoginStateMachine.Event, LoginStateMachine.State> {
+    override var viewModelScope: CoroutineScope? = null
 
     private val stateMachine = StateMachine.create<State, Event, SideEffect> {
         initialState(State.Init)
@@ -45,9 +43,9 @@ class LoginStateMachine @Inject  constructor(
         }
     }
 
-    val state = stateMachine.state
+    override val state = stateMachine.state
 
-    fun onEvent(event: Event) {
+    override fun onEvent(event: Event) {
         stateMachine.transition(event)
     }
 
@@ -65,35 +63,5 @@ class LoginStateMachine @Inject  constructor(
 
     sealed class SideEffect {
         data class LoadLogin(val name: String, val password: String) : SideEffect()
-    }
-}
-
-class LoginEffectListener @Inject constructor(
-    private val useCase: RegisterLoginUseCase,
-) : @JvmSuppressWildcards
-    (
-    LoginStateMachine.SideEffect, CoroutineScope,
-    @JvmSuppressWildcards (LoginStateMachine.Event) -> Unit
-) -> Unit {
-
-    override fun invoke(
-        sideEffect: LoginStateMachine.SideEffect,
-        viewModelScope: CoroutineScope,
-        onEvent: (LoginStateMachine.Event) -> Unit
-    ) {
-        when (sideEffect) {
-            is LoginStateMachine.SideEffect.LoadLogin -> viewModelScope.launch {
-                useCase.action(
-                    RegisterLoginUseCase.RegisterLoginParam(
-                        sideEffect.name,
-                        sideEffect.password
-                    )
-                ).fold({
-                    onEvent(LoginStateMachine.Event.OnLoaded)
-                }, {
-                    onEvent(LoginStateMachine.Event.OnError)
-                })
-            }
-        }
     }
 }
