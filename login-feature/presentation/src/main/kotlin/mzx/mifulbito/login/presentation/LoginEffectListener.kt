@@ -7,7 +7,7 @@ import mzx.mifulbito.domain.login.RegisterLoginUseCase
 import mzx.mifulbito.domain.login.UseCase
 
 class LoginEffectListener @Inject constructor(
-    @JvmSuppressWildcards private val useCase: UseCase<RegisterLoginUseCase.RegisterLoginParam,
+    @JvmSuppressWildcards private val useCase: UseCase<Unit,
             RegisterLoginUseCase.RegisterLoginResult,
             RegisterLoginUseCase.RegisterLoginError>,
 ) : (
@@ -23,13 +23,8 @@ class LoginEffectListener @Inject constructor(
     ) {
         when (sideEffect) {
             is LoginStateMachine.SideEffect.LoadLogin -> viewModelScope.launch {
-                useCase.action(
-                    RegisterLoginUseCase.RegisterLoginParam(
-                        sideEffect.name,
-                        sideEffect.password
-                    )
-                ).fold({
-                    onEvent(LoginStateMachine.Event.OnLoaded)
+                useCase.action(Unit).fold({
+                    onEvent(LoginStateMachine.Event.OnLoginSuccess)
                 }, {
                     onEvent(LoginStateMachine.Event.OnError)
                 })

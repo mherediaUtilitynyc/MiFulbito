@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import mzx.mifulbito.login.presentation.LoginStateMachine
-import mzx.mifulbito.login.presentation.MVI
+import mzx.mifulbito.MVI
 
 @HiltViewModel
 class MainViewModel @Inject constructor(

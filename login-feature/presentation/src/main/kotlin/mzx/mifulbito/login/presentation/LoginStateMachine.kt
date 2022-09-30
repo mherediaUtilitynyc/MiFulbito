@@ -2,6 +2,7 @@ package mzx.mifulbito.login.presentation
 
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
+import mzx.mifulbito.MVI
 import mzx.mifulbito.StateMachine
 
 @JvmSuppressWildcards
@@ -16,18 +17,31 @@ class LoginStateMachine @Inject constructor(
     private val stateMachine = StateMachine.create<State, Event, SideEffect> {
         initialState(State.Init)
         state<State.Init> {
-            on<Event.OnInit> { event ->
+            on<Event.OnInit> {
                 transitionTo(
-                    State.Loading,
-                    SideEffect.LoadLogin(name = event.name, password = event.password)
+                    State.CheckingCredentials,
+                    SideEffect.LoadLogin
                 )
             }
         }
-        state<State.Loading> {
-            on<Event.OnLoaded> {
-                transitionTo(State.Loaded)
+        state<State.CheckingCredentials> {
+            on<Event.OnPasswordExpired> { event ->
+                transitionTo(State.CheckPassword(event.userName))
+            }
+            on<Event.OnNotCredentials> {
+                transitionTo(State.CheckCredential)
+            }
+            on<Event.OnLoginSuccess> {
+                transitionTo(State.Logged)
+            }
+            on<Event.OnError> {
+                transitionTo(State.LoggedError)
             }
         }
+        state<State.CheckPassword> {  }
+        state<State.CheckCredential> {  }
+        state<State.Logged> {  }
+        state<State.LoggedError> {  }
 
         onTransition {
             val validTransition = it as? StateMachine.Transition.Valid ?: return@onTransition
@@ -49,19 +63,24 @@ class LoginStateMachine @Inject constructor(
         stateMachine.transition(event)
     }
 
-    sealed class State {
-        object Init : State()
-        object Loading : State()
-        object Loaded : State()
+    sealed interface State {
+        object Init : State
+        object CheckingCredentials : State
+        data class CheckPassword(val userName: String) : State
+        object CheckCredential : State
+        object Logged : State
+        object LoggedError : State
     }
 
-    sealed class Event {
-        data class OnInit(val name: String, val password: String) : Event()
-        object OnLoaded : Event()
-        object OnError : Event()
+    sealed interface Event {
+        object OnInit : Event
+        data class OnPasswordExpired(val userName: String) : Event
+        object OnNotCredentials : Event
+        object OnLoginSuccess : Event
+        object OnError : Event
     }
 
-    sealed class SideEffect {
-        data class LoadLogin(val name: String, val password: String) : SideEffect()
+    sealed interface SideEffect {
+        object LoadLogin : SideEffect
     }
 }

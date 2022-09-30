@@ -1,4 +1,4 @@
-package mzx.mifulbito.login.presentation
+package mzx.mifulbito
 
 import androidx.compose.runtime.State
 import kotlinx.coroutines.CoroutineScope

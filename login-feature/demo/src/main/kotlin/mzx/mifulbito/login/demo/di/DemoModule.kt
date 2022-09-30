@@ -9,13 +9,13 @@ import mzx.mifulbito.domain.login.RegisterLoginUseCase
 import mzx.mifulbito.domain.login.UseCase
 import mzx.mifulbito.login.presentation.LoginEffectListener
 import mzx.mifulbito.login.presentation.LoginStateMachine
-import mzx.mifulbito.login.presentation.MVI
+import mzx.mifulbito.MVI
 
 @Module
 @InstallIn(ViewModelComponent::class)
 interface DemoModule {
     @Binds
-    fun useCase(useCase: RegisterLoginUseCase): UseCase<RegisterLoginUseCase.RegisterLoginParam,
+    fun useCase(useCase: RegisterLoginUseCase): UseCase<Unit,
             RegisterLoginUseCase.RegisterLoginResult,
             RegisterLoginUseCase.RegisterLoginError>
 
