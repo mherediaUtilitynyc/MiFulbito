@@ -8,6 +8,7 @@ class DomainPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.pluginManager.apply("java")
         project.pluginManager.apply("kotlin")
+        project.pluginManager.apply("mzx.mifulbito.plugin.feature.spek2")
 
         configureDependencies(project)
     }
@@ -17,6 +18,12 @@ class DomainPlugin : Plugin<Project> {
             addImplementation( project.libs("kotlin"))
             addImplementation( project.libs("arrowKt"))
             addImplementation( project.libs("javaxInject"))
+
+            arrayOf(
+                "junit",
+                "mockk",
+                "coroutinesTest"
+            ).forEach { addTestImplementation(project.libs(it)) }
         }
     }
 }

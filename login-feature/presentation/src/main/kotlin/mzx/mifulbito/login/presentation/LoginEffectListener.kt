@@ -23,12 +23,33 @@ class LoginEffectListener @Inject constructor(
     ) {
         when (sideEffect) {
             is LoginStateMachine.SideEffect.LoadLogin -> viewModelScope.launch {
-                useCase.action(Unit).fold({
-                    onEvent(LoginStateMachine.Event.OnLoginSuccess)
-                }, {
-                    onEvent(LoginStateMachine.Event.OnError)
-                })
+                useCase.action(Unit).fold(errorMapper(onEvent), successMapper(onEvent))
             }
         }
     }
 }
+
+fun errorMapper(onEvent: (LoginStateMachine.Event) -> Unit): (RegisterLoginUseCase.RegisterLoginError) -> Unit =
+    { error ->
+        onEvent(
+            when (error) {
+                RegisterLoginUseCase.RegisterLoginError.CommonError -> LoginStateMachine.Event.OnError
+                is RegisterLoginUseCase.RegisterLoginError.LoginError -> LoginStateMachine.Event.OnLoginError(error.userName)
+            }
+        )
+    }
+
+fun successMapper(onEvent: (LoginStateMachine.Event) -> Unit): (RegisterLoginUseCase.RegisterLoginResult) -> Unit =
+    { result ->
+        onEvent(
+            when (result) {
+                RegisterLoginUseCase.RegisterLoginResult.LoginSuccess -> LoginStateMachine.Event.OnLoginSuccess
+                RegisterLoginUseCase.RegisterLoginResult.NoCredentials
+                -> LoginStateMachine.Event.OnNotCredentials
+                is RegisterLoginUseCase.RegisterLoginResult.PasswordExpired
+                -> LoginStateMachine.Event.OnPasswordExpired(
+                    result.userName
+                )
+            }
+        )
+    }

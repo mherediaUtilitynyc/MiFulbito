@@ -38,10 +38,10 @@ class LoginStateMachine @Inject constructor(
                 transitionTo(State.LoggedError)
             }
         }
-        state<State.CheckPassword> {  }
-        state<State.CheckCredential> {  }
-        state<State.Logged> {  }
-        state<State.LoggedError> {  }
+        state<State.CheckPassword> { }
+        state<State.CheckCredential> { }
+        state<State.Logged> { }
+        state<State.LoggedError> { }
 
         onTransition {
             val validTransition = it as? StateMachine.Transition.Valid ?: return@onTransition
@@ -75,6 +75,8 @@ class LoginStateMachine @Inject constructor(
     sealed interface Event {
         object OnInit : Event
         data class OnPasswordExpired(val userName: String) : Event
+        data class OnLoginError(val userName: String) : Event
+
         object OnNotCredentials : Event
         object OnLoginSuccess : Event
         object OnError : Event

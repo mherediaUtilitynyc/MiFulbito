@@ -32,5 +32,6 @@ include(":app")
 include(
     "login-feature:presentation",
     "login-feature:domain",
-    "login-feature:demo"
+    "login-feature:demo",
+    "login-feature:data",
 )
