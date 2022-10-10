@@ -57,6 +57,30 @@ internal class LoginStateMachineTest : Spek({
                         LoginStateMachine.State.CheckCredential
                     )
                 }
+                describe("enter valid credentials") {
+                    beforeEachTest {
+                        stateMachine.onEvent(
+                            LoginStateMachine.Event.OnCheckCredentials(
+                                "user",
+                                "password"
+                            )
+                        )
+                    }
+                    it("will display Checking credentials") {
+                        assertEquals(
+                            stateMachine.state.value,
+                            LoginStateMachine.State.CheckingCredential
+                        )
+                    }
+                    describe("login success") {
+                        it("Greattt") {
+                            assertEquals(
+                                stateMachine.state.value,
+                                LoginStateMachine.State.Logged
+                            )
+                        }
+                    }
+                }
             }
 
             describe("Login Valid") {

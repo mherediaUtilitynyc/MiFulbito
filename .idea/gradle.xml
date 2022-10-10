@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/login-feature" />
             <option value="$PROJECT_DIR$/login-feature/data" />
+            <option value="$PROJECT_DIR$/login-feature/data/data-json" />
             <option value="$PROJECT_DIR$/login-feature/demo" />
             <option value="$PROJECT_DIR$/login-feature/domain" />
             <option value="$PROJECT_DIR$/login-feature/presentation" />

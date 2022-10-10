@@ -4,6 +4,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import mzx.mifulbito.domain.login.RegisterLoginUseCase
+import mzx.mifulbito.domain.login.RegisterLoginUseCase.RegisterLoginError.LoginError
 import mzx.mifulbito.domain.login.UseCase
 
 class LoginEffectListener @Inject constructor(
@@ -34,7 +35,7 @@ fun errorMapper(onEvent: (LoginStateMachine.Event) -> Unit): (RegisterLoginUseCa
         onEvent(
             when (error) {
                 RegisterLoginUseCase.RegisterLoginError.CommonError -> LoginStateMachine.Event.OnError
-                is RegisterLoginUseCase.RegisterLoginError.LoginError -> LoginStateMachine.Event.OnLoginError(error.userName)
+                is LoginError -> LoginStateMachine.Event.OnLoginError(error.userName)
             }
         )
     }

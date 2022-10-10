@@ -20,12 +20,17 @@ class PresentationPlugin : Plugin<Project> {
         project.pluginManager.apply("org.jetbrains.kotlin.android")
         project.pluginManager.apply("kotlin-kapt")
         project.pluginManager.apply("mzx.mifulbito.plugin.feature.spek2Android")
-//        project.pluginManager.apply("dagger.hilt.android.plugin")
         project.extensions.getByType(BaseExtension::class.java).let {
+            it.buildFeatures.compose = true
             it.setCompileSdkVersion(Versions.Android.compileSdk)
             it.defaultConfig {
                 this.minSdk = Versions.Android.minSdk
+
+
                 vectorDrawables.useSupportLibrary = true
+            }
+            it.composeOptions {
+                kotlinCompilerExtensionVersion = "1.2.0-beta01"
             }
         }
     }

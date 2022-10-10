@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mzx.mifulbito.login.demo.theme.MiFulbitoTheme
+import mzx.mifulbito.login.ui.LoginScreen
 
 
 @AndroidEntryPoint
@@ -28,15 +29,15 @@ class MainActivity : AppCompatActivity() {
                 composable("example") { backStackEntry ->
                     // Creates a ViewModel from the current BackStackEntry
                     // Available in the androidx.hilt:hilt-navigation-compose artifact
-                    MiFulbitoTheme {
+//                    MiFulbitoTheme {
                         // A surface container using the 'background' color from the theme
-                        Surface(
-                            modifier = Modifier.fillMaxSize(),
-                            color = MaterialTheme.colorScheme.background
-                        ) {
+//                        Surface(
+//                            modifier = Modifier.fillMaxSize(),
+//                            color = MaterialTheme.colorScheme.background
+//                        ) {
                             MyScreen()
-                        }
-                    }
+//                        }
+//                    }
                 }
                 /* ... */
             }
@@ -49,5 +50,5 @@ class MainActivity : AppCompatActivity() {
 fun MyScreen(
     viewModel: MainViewModel = hiltViewModel()
 ) {
-    viewModel.state
+    LoginScreen(state = viewModel.state.value, onEvent = viewModel::onEvent)
 }

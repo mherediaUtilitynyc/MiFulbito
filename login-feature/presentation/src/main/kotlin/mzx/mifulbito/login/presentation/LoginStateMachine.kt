@@ -68,6 +68,7 @@ class LoginStateMachine @Inject constructor(
         object CheckingCredentials : State
         data class CheckPassword(val userName: String) : State
         object CheckCredential : State
+        object CheckingCredential : State
         object Logged : State
         object LoggedError : State
     }
@@ -76,6 +77,8 @@ class LoginStateMachine @Inject constructor(
         object OnInit : Event
         data class OnPasswordExpired(val userName: String) : Event
         data class OnLoginError(val userName: String) : Event
+        data class OnCheckCredentials(val user: String, val password: String) :
+            Event
 
         object OnNotCredentials : Event
         object OnLoginSuccess : Event
