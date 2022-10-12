@@ -19,29 +19,44 @@ class LoginStateMachine @Inject constructor(
         state<State.Init> {
             on<Event.OnInit> {
                 transitionTo(
-                    State.CheckingCredentials,
-                    SideEffect.LoadLogin
+                    state = State.CheckingCredentials,
+                    sideEffect = SideEffect.LoadLogin
                 )
             }
         }
         state<State.CheckingCredentials> {
             on<Event.OnPasswordExpired> { event ->
-                transitionTo(State.CheckPassword(event.userName))
+                transitionTo(state = State.CheckPassword(event.userName))
             }
             on<Event.OnNotCredentials> {
-                transitionTo(State.CheckCredential)
+                transitionTo(state = State.CheckCredential)
             }
             on<Event.OnLoginSuccess> {
-                transitionTo(State.Logged)
+                transitionTo(state = State.Logged)
             }
             on<Event.OnError> {
                 transitionTo(State.LoggedError)
             }
         }
         state<State.CheckPassword> { }
-        state<State.CheckCredential> { }
+        state<State.CheckCredential> {
+            on<Event.OnCheckCredentials> {
+                transitionTo(
+                    State.CheckingCredential,
+                    SideEffect.CheckingCredentials(user = it.user, password = it.password)
+                )
+            }
+        }
         state<State.Logged> { }
         state<State.LoggedError> { }
+        state<State.CheckingCredential> {
+            on<Event.OnLoginSuccess> {
+                transitionTo(State.Logged)
+            }
+            on<Event.OnLoginError>{
+                transitionTo(State.CheckPassword(userName = it.userName))
+            }
+        }
 
         onTransition {
             val validTransition = it as? StateMachine.Transition.Valid ?: return@onTransition
@@ -70,7 +85,7 @@ class LoginStateMachine @Inject constructor(
         object CheckCredential : State
         object CheckingCredential : State
         object Logged : State
-        object LoggedError : State
+        object  LoggedError : State
     }
 
     sealed interface Event {
@@ -86,6 +101,9 @@ class LoginStateMachine @Inject constructor(
     }
 
     sealed interface SideEffect {
+        data class CheckingCredentials(val user: String, val password: String) :
+            SideEffect
+
         object LoadLogin : SideEffect
     }
 }

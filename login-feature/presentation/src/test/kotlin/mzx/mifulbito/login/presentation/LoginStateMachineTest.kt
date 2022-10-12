@@ -57,13 +57,14 @@ internal class LoginStateMachineTest : Spek({
                         LoginStateMachine.State.CheckCredential
                     )
                 }
+                val checkCredentialEvent = LoginStateMachine.Event.OnCheckCredentials(
+                    "user",
+                    "password"
+                )
                 describe("enter valid credentials") {
                     beforeEachTest {
                         stateMachine.onEvent(
-                            LoginStateMachine.Event.OnCheckCredentials(
-                                "user",
-                                "password"
-                            )
+                            checkCredentialEvent
                         )
                     }
                     it("will display Checking credentials") {
@@ -71,12 +72,34 @@ internal class LoginStateMachineTest : Spek({
                             stateMachine.state.value,
                             LoginStateMachine.State.CheckingCredential
                         )
+                        verify {
+                            listener.invoke(
+                                LoginStateMachine.SideEffect.CheckingCredentials(
+                                    "user",
+                                    "password"
+                                ), testScope, stateMachine::onEvent
+                            )
+                        }
                     }
                     describe("login success") {
-                        it("Greattt") {
+                        beforeEachTest {
+                            stateMachine.onEvent(LoginStateMachine.Event.OnLoginSuccess)
+                        }
+                        it("Great Logged") {
                             assertEquals(
                                 stateMachine.state.value,
                                 LoginStateMachine.State.Logged
+                            )
+                        }
+                    }
+                    describe("Login error") {
+                        beforeEachTest {
+                            stateMachine.onEvent(LoginStateMachine.Event.OnLoginError("user"))
+                        }
+                        it("Password error") {
+                            assertEquals(
+                                stateMachine.state.value,
+                                LoginStateMachine.State.CheckPassword("user")
                             )
                         }
                     }
