@@ -13,6 +13,7 @@ import mzx.mifulbito.data.login.LoginRepository
 import mzx.mifulbito.data.login.RegisteredUserRepository
 import mzx.mifulbito.domain.login.RegisterLoginUseCase
 import mzx.mifulbito.domain.login.UseCase
+import mzx.mifulbito.login.demo.data.repository.AccountSettings
 import mzx.mifulbito.login.demo.data.repository.MockLoginRepository
 import mzx.mifulbito.login.demo.data.repository.MockRegisteredUserRepository
 import mzx.mifulbito.login.presentation.LoginEffectListener
@@ -42,11 +43,14 @@ interface DemoModule {
     fun registeredUserRepository(registeredUserRepository: MockRegisteredUserRepository): RegisteredUserRepository
 
     @Binds
+    fun accountSettings(accountSettings: MockRegisteredUserRepository.AccountSettingsImpl): AccountSettings
+
+    @Binds
     fun loginRepository(loginRepository: MockLoginRepository): LoginRepository
 
     companion object {
         @Provides
-        fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+        fun  mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
     }
 
 }

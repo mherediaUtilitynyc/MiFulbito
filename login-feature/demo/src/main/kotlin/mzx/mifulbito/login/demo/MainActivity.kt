@@ -26,13 +26,8 @@ class MainActivity : AppCompatActivity() {
                     // Creates a ViewModel from the current BackStackEntry
                     // Available in the androidx.hilt:hilt-navigation-compose artifact
                     MiFulbitoTheme {
-                        // A surface container using the 'background' color from the theme
-//                        Surface(
-//                            modifier = Modifier.fillMaxSize(),
-//                            color = MaterialTheme.colorScheme.background
-//                        ) {
+
                         MyScreen()
-//                        }
                     }
                 }
                 /* ... */

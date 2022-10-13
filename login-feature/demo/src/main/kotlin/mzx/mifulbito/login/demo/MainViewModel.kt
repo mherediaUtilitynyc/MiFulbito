@@ -6,20 +6,17 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import mzx.mifulbito.login.presentation.LoginStateMachine
 import mzx.mifulbito.MVI
+import mzx.mifulbito.login.presentation.LoginStateMachine
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val stateMachine: MVI<LoginStateMachine.Event, LoginStateMachine.State>,
-    private val mainDispatcher : CoroutineDispatcher
+    private val mainDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val job = SupervisorJob()
-    private val uiScope = CoroutineScope(mainDispatcher + job)
     init {
-        stateMachine.viewModelScope = uiScope
+        stateMachine.viewModelScope = viewModelScope
+        stateMachine.onEvent(LoginStateMachine.Event.OnInit)
     }
 
     val state: State<LoginStateMachine.State> = stateMachine.state
@@ -28,8 +25,4 @@ class MainViewModel @Inject constructor(
         stateMachine.onEvent(event)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        this.job.cancel()
-    }
 }

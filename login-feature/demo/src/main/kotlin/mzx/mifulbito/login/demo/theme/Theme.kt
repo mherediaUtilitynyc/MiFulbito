@@ -14,60 +14,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import mzx.mifulbito.theme.md_theme_dark_background
-import mzx.mifulbito.theme.md_theme_dark_error
-import mzx.mifulbito.theme.md_theme_dark_errorContainer
-import mzx.mifulbito.theme.md_theme_dark_inverseOnSurface
-import mzx.mifulbito.theme.md_theme_dark_inversePrimary
-import mzx.mifulbito.theme.md_theme_dark_inverseSurface
-import mzx.mifulbito.theme.md_theme_dark_onBackground
-import mzx.mifulbito.theme.md_theme_dark_onError
-import mzx.mifulbito.theme.md_theme_dark_onErrorContainer
-import mzx.mifulbito.theme.md_theme_dark_onPrimary
-import mzx.mifulbito.theme.md_theme_dark_onPrimaryContainer
-import mzx.mifulbito.theme.md_theme_dark_onSecondary
-import mzx.mifulbito.theme.md_theme_dark_onSecondaryContainer
-import mzx.mifulbito.theme.md_theme_dark_onSurface
-import mzx.mifulbito.theme.md_theme_dark_onSurfaceVariant
-import mzx.mifulbito.theme.md_theme_dark_onTertiary
-import mzx.mifulbito.theme.md_theme_dark_onTertiaryContainer
-import mzx.mifulbito.theme.md_theme_dark_outline
-import mzx.mifulbito.theme.md_theme_dark_primary
-import mzx.mifulbito.theme.md_theme_dark_primaryContainer
-import mzx.mifulbito.theme.md_theme_dark_secondary
-import mzx.mifulbito.theme.md_theme_dark_secondaryContainer
-import mzx.mifulbito.theme.md_theme_dark_surface
-import mzx.mifulbito.theme.md_theme_dark_surfaceTint
-import mzx.mifulbito.theme.md_theme_dark_surfaceVariant
-import mzx.mifulbito.theme.md_theme_dark_tertiary
-import mzx.mifulbito.theme.md_theme_dark_tertiaryContainer
-import mzx.mifulbito.theme.md_theme_light_background
-import mzx.mifulbito.theme.md_theme_light_error
-import mzx.mifulbito.theme.md_theme_light_errorContainer
-import mzx.mifulbito.theme.md_theme_light_inverseOnSurface
-import mzx.mifulbito.theme.md_theme_light_inversePrimary
-import mzx.mifulbito.theme.md_theme_light_inverseSurface
-import mzx.mifulbito.theme.md_theme_light_onBackground
-import mzx.mifulbito.theme.md_theme_light_onError
-import mzx.mifulbito.theme.md_theme_light_onErrorContainer
-import mzx.mifulbito.theme.md_theme_light_onPrimary
-import mzx.mifulbito.theme.md_theme_light_onPrimaryContainer
-import mzx.mifulbito.theme.md_theme_light_onSecondary
-import mzx.mifulbito.theme.md_theme_light_onSecondaryContainer
-import mzx.mifulbito.theme.md_theme_light_onSurface
-import mzx.mifulbito.theme.md_theme_light_onSurfaceVariant
-import mzx.mifulbito.theme.md_theme_light_onTertiary
-import mzx.mifulbito.theme.md_theme_light_onTertiaryContainer
-import mzx.mifulbito.theme.md_theme_light_outline
-import mzx.mifulbito.theme.md_theme_light_primary
-import mzx.mifulbito.theme.md_theme_light_primaryContainer
-import mzx.mifulbito.theme.md_theme_light_secondary
-import mzx.mifulbito.theme.md_theme_light_secondaryContainer
-import mzx.mifulbito.theme.md_theme_light_surface
-import mzx.mifulbito.theme.md_theme_light_surfaceTint
-import mzx.mifulbito.theme.md_theme_light_surfaceVariant
-import mzx.mifulbito.theme.md_theme_light_tertiary
-import mzx.mifulbito.theme.md_theme_light_tertiaryContainer
 
 
 private val LightColors = lightColorScheme(
@@ -130,23 +76,6 @@ private val DarkColors = darkColorScheme(
     inversePrimary = md_theme_dark_inversePrimary,
     surfaceTint = md_theme_dark_surfaceTint,
 )
-
-//@Composable
-//fun MiFulbitoTheme(
-//  useDarkTheme: Boolean = isSystemInDarkTheme(),
-//  content: @Composable() () -> Unit
-//) {
-//  val colors = if (!useDarkTheme) {
-//    LightColors
-//  } else {
-//    DarkColors
-//  }
-//
-//  MaterialTheme(
-//    colorScheme = colors,
-//    content = content
-//  )
-//}
 
 @Composable
 fun MiFulbitoTheme(
