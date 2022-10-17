@@ -4,7 +4,6 @@ import com.android.build.gradle.BaseExtension
 import mzx.mifulbito.Versions
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.dependencies
 
 
@@ -71,20 +70,4 @@ class PresentationPlugin : Plugin<Project> {
 
         }
     }
-}
-
-fun DependencyHandlerScope.addTestImplementation(libs: String) {
-    add("testImplementation", libs)
-}
-
-private fun DependencyHandlerScope.addAndroidTestImplementation(libs: String) {
-    add("androidTestImplementation", libs)
-}
-
-private fun DependencyHandlerScope.addDebugImplementation(libs: String) {
-    add("debugImplementation", libs)
-}
-
-fun DependencyHandlerScope.addImplementation(libs: String) {
-    add("implementation", libs)
 }
