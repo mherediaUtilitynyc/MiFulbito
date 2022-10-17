@@ -10,9 +10,9 @@ import org.gradle.kotlin.dsl.dependencies
 
 fun Project.dependenciesConfig(
     implementations: List<String>,
-    debugImplementations: List<String>,
-    testImplementation: List<String>,
-    androidTestImplementation: List<String>
+    debugImplementations: List<String> = emptyList(),
+    testImplementation: List<String> = emptyList(),
+    androidTestImplementation: List<String> = emptyList()
 ) {
     dependencies {
         implementations mapToProjectLibs project addImplementations this
