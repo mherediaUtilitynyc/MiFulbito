@@ -1,73 +1,43 @@
 package mzx.mifulbito.plugin.feature
 
-import com.android.build.gradle.BaseExtension
-import mzx.mifulbito.Versions
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 
 
 class PresentationPlugin : Plugin<Project> {
 
+    private val androidTestImplementation: List<String> = listOf(
+        "extJunit",
+        "expressoCore",
+        "composeUiTestJunit4",
+        "mockkAndroid"
+    )
+    private val testImplementation: List<String> = listOf(
+        "junit",
+        "mockk",
+        "coroutinesTest"
+    )
+    private val debugImplementations: List<String> =
+        listOf("composeUiTooling", "composeUiTestManifest")
+    private val implementationIds: List<String> = listOf(
+        "coreKtx", "composeUi", "composeUiPreview", "composeMaterial3",
+        "lifecycleKtx", "activityCompose", "hilt", "arrowKt"
+    )
+    private val pluginsIds: List<String> = listOf(
+        "com.android.library",
+        "org.jetbrains.kotlin.android",
+        "kotlin-kapt",
+        "mzx.mifulbito.plugin.feature.spek2Android"
+    )
+
     override fun apply(project: Project) {
-        configureAndroid(project)
-        configureDependencies(project)
-    }
-
-    private fun configureAndroid(project: Project) {
-        project.pluginManager.apply("com.android.library")
-        project.pluginManager.apply("org.jetbrains.kotlin.android")
-        project.pluginManager.apply("kotlin-kapt")
-        project.pluginManager.apply("mzx.mifulbito.plugin.feature.spek2Android")
-        project.extensions.getByType(BaseExtension::class.java).let {
-            it.buildFeatures.compose = true
-            it.setCompileSdkVersion(Versions.Android.compileSdk)
-            it.defaultConfig {
-                this.minSdk = Versions.Android.minSdk
-
-
-                vectorDrawables.useSupportLibrary = true
-            }
-            it.composeOptions {
-                kotlinCompilerExtensionVersion = "1.2.0-beta01"
-            }
-        }
-    }
-
-    private fun configureDependencies(project: Project) {
-
-
-        project.dependencies {
-
-            add(
-                "implementation",
-                project.findProject(":login-feature:domain")
-                    ?: throw IllegalArgumentException("Project not founded")
-            )
-            arrayOf(
-                "coreKtx", "composeUi", "composeUiPreview", "composeMaterial3",
-                "lifecycleKtx", "activityCompose", "hilt", "arrowKt"
-            ).forEach { addImplementation(project.libs(it)) }
-            //add("kapt", project.libs("hiltKapt"))
-            arrayOf("composeUiTooling", "composeUiTestManifest").forEach {
-                addDebugImplementation(
-                    project.libs(it)
-                )
-            }
-
-
-            arrayOf(
-                "junit",
-                "mockk",
-                "coroutinesTest"
-            ).forEach { addTestImplementation(project.libs(it)) }
-            arrayOf(
-                "extJunit",
-                "expressoCore",
-                "composeUiTestJunit4",
-                "mockkAndroid"
-            ).forEach { addAndroidTestImplementation(project.libs(it)) }
-
-        }
+        project.pluginConfig(pluginsIds)
+        project.androidLibConfig()
+        project.dependenciesConfig(
+            implementations = implementationIds,
+            debugImplementations = debugImplementations,
+            testImplementation = testImplementation,
+            androidTestImplementation = androidTestImplementation
+        )
     }
 }

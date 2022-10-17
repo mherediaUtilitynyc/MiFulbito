@@ -1,6 +1,8 @@
 package mzx.mifulbito.plugin.feature
 
+import com.android.build.api.dsl.LibraryExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import mzx.mifulbito.Versions
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.PluginContainer
@@ -24,11 +26,11 @@ fun Project.dependenciesConfig(
 
 fun Project.androidAppConfig() {
     extensions.getByType(BaseAppModuleExtension::class.java).apply {
-        compileSdk = 33
+        compileSdk = Versions.Android.compileSdk
         defaultConfig {
             applicationId = "mzx.mifulbito.login.demo"
-            minSdk = 21
-            targetSdk = 33
+            minSdk = Versions.Android.minSdk
+            targetSdk = Versions.Android.targetSdk
             versionCode = 1
             versionName = "1.0"
 
@@ -50,12 +52,26 @@ fun Project.androidAppConfig() {
             compose = true
         }
         composeOptions {
-            kotlinCompilerExtensionVersion = "1.2.0-beta01"
+            kotlinCompilerExtensionVersion = Versions.Android.kotlinCompilerExtensionVersion
         }
         packagingOptions {
             resources {
                 excludes += "/META-INF/{AL2.0,LGPL2.1}"
             }
+        }
+    }
+}
+
+fun Project.androidLibConfig() {
+    project.extensions.getByType(LibraryExtension::class.java).let {
+        it.buildFeatures.compose = true
+        it.compileSdk = Versions.Android.compileSdk
+        it.defaultConfig {
+            this.minSdk = Versions.Android.minSdk
+            vectorDrawables.useSupportLibrary = true
+        }
+        it.composeOptions {
+            kotlinCompilerExtensionVersion = Versions.Android.kotlinCompilerExtensionVersion
         }
     }
 }
