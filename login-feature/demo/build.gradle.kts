@@ -9,6 +9,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+android {
+    namespace = "mzx.mifulbito.login.demo"
+}
 dependencies {
 
     implementation(project(mapOf("path" to ":login-feature:presentation")))
@@ -16,7 +19,7 @@ dependencies {
     implementation(project(mapOf("path" to ":login-feature:data")))
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     kapt(libs.hiltKapt)
 
 }
