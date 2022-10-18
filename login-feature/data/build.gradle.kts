@@ -1,3 +1,3 @@
 plugins {
-    id("mzx.mifulbito.plugin.feature.data")
+    id("utility.closet.plugin.data")
 }

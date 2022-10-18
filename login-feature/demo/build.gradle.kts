@@ -1,5 +1,5 @@
 plugins {
-    id("mzx.mifulbito.plugin.feature.demo")
+    id("utility.closet.plugin.demo")
     id("dagger.hilt.android.plugin")
 }
 

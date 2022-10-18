@@ -1,7 +1,10 @@
-package mzx.mifulbito.plugin.feature
+package utility.closet.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import utility.closet.androidLibConfig
+import utility.closet.dependenciesConfig
+import utility.closet.pluginConfig
 
 
 class PresentationPlugin : Plugin<Project> {
@@ -27,7 +30,7 @@ class PresentationPlugin : Plugin<Project> {
         "com.android.library",
         "org.jetbrains.kotlin.android",
         "kotlin-kapt",
-        "mzx.mifulbito.plugin.feature.spek2Android"
+        "utility.closet.plugin.spek2Android"
     )
 
     override fun apply(project: Project) {

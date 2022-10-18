@@ -1,7 +1,10 @@
-package mzx.mifulbito.plugin.feature
+package utility.closet.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import utility.closet.androidAppConfig
+import utility.closet.dependenciesConfig
+import utility.closet.pluginConfig
 
 class DemoPlugin : Plugin<Project> {
     private val pluginsIds = listOf(

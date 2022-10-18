@@ -1,5 +1,5 @@
 plugins {
-    id("mzx.mifulbito.plugin.feature.domain")
+    id("utility.closet.plugin.domain")
 }
 
 dependencies {

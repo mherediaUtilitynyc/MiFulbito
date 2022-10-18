@@ -1,5 +1,5 @@
 plugins {
-    id("mzx.mifulbito.plugin.feature.presentation")
+    id("utility.closet.plugin.presentation")
 }
 android {
     namespace = "mzx.mifulbito.login.presentation"

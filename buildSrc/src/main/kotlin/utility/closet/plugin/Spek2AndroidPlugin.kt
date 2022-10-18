@@ -1,10 +1,12 @@
-package mzx.mifulbito.plugin.feature
+package utility.closet.plugin
 
 import com.android.build.gradle.BaseExtension
 import de.mannodermaus.gradle.plugins.junit5.AndroidJUnitPlatformExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import utility.closet.addTestImplementation
+import utility.closet.libs
 
 class Spek2AndroidPlugin : Plugin<Project> {
 
