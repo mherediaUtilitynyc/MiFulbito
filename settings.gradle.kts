@@ -35,6 +35,7 @@ include(
     "login-feature:demo",
     "login-feature:data",
     "login-feature:data:data-server-json",
+    "login-feature:data:data-server-graphql",
     "login-feature:data:data-preferences"
 
 )
