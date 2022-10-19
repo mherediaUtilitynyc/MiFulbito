@@ -1,4 +1,4 @@
-package utility.closet
+package utility.closet.ext
 
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 

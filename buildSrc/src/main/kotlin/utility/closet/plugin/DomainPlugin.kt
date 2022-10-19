@@ -7,18 +7,12 @@ import utility.closet.ext.pluginConfig
 
 class DomainPlugin : Plugin<Project> {
 
+    private val config = Config.DOMAIN_CONFIG
+
     override fun apply(project: Project) {
-        project.pluginConfig(pluginsIds)
+        project.pluginConfig(config.pluginsIds)
         project.dependenciesConfig(
-            implementations = implementationIds,
-            testImplementation = testImplementation,
+            config.pluginConfig
         )
     }
-
-    private val testImplementation: List<String> = listOf(
-        "junit", "mockk", "coroutinesTest"
-    )
-    private val implementationIds: List<String> = listOf("kotlin", "arrowKt", "javaxInject")
-    private val pluginsIds: List<String> =
-        listOf("java", "kotlin", "utility.closet.plugin.spek2")
 }

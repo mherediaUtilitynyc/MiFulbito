@@ -7,24 +7,22 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utility.closet.Versions
-import utility.closet.addAndroidTestImplementation
+import utility.closet.ext.addAndroidTestImplementation
 import utility.closet.addDebugImplementations
 import utility.closet.addImplementations
-import utility.closet.addTestImplementation
+import utility.closet.ext.addTestImplementation
 import utility.closet.applyIds
 import utility.closet.mapToProjectLibs
+import utility.closet.plugin.PluginConfig
 
 fun Project.dependenciesConfig(
-    implementations: List<String>,
-    debugImplementations: List<String> = emptyList(),
-    testImplementation: List<String> = emptyList(),
-    androidTestImplementation: List<String> = emptyList()
+    pluginConfig: PluginConfig
 ) {
     dependencies {
-        implementations mapToProjectLibs project addImplementations this
-        debugImplementations mapToProjectLibs project addDebugImplementations this
-        testImplementation mapToProjectLibs project addTestImplementation this
-        androidTestImplementation mapToProjectLibs project addAndroidTestImplementation this
+        pluginConfig.implementationIds mapToProjectLibs project addImplementations this
+        pluginConfig.debugImplementations mapToProjectLibs project addDebugImplementations this
+        pluginConfig.testImplementation mapToProjectLibs project addTestImplementation this
+        pluginConfig.androidTestImplementation mapToProjectLibs project addAndroidTestImplementation this
     }
 }
 
@@ -32,7 +30,7 @@ fun Project.androidAppConfig() {
     extensions.getByType(BaseAppModuleExtension::class.java).apply {
         compileSdk = Versions.Android.compileSdk
         defaultConfig {
-            applicationId = "mzx.mifulbito.login.demo"
+//            applicationId = "mzx.mifulbito.login.demo"
             minSdk = Versions.Android.minSdk
             targetSdk = Versions.Android.targetSdk
             versionCode = 1

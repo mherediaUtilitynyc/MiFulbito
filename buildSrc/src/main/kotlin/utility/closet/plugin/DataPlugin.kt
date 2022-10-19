@@ -7,11 +7,10 @@ import utility.closet.ext.pluginConfig
 
 class DataPlugin : Plugin<Project> {
 
-    override fun apply(project: Project) {
-        project.pluginConfig(pluginsIds)
-        project.dependenciesConfig(implementations = implementations)
-    }
+    private val config = Config.DATA_CONFIG
 
-    private val pluginsIds: List<String> = listOf("java", "kotlin")
-    private val implementations = listOf("kotlin")
+    override fun apply(project: Project) {
+        project.pluginConfig(config.pluginsIds)
+        project.dependenciesConfig(config.pluginConfig)
+    }
 }

@@ -4,6 +4,10 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.PluginContainer
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import utility.closet.ext.addAndroidTestImplementation
+import utility.closet.ext.addDebugImplementation
+import utility.closet.ext.addImplementation
+import utility.closet.ext.addTestImplementation
 
 
 internal infix fun List<String>.addAndroidTestImplementation(dependencyHandlerScope: DependencyHandlerScope) {
