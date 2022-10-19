@@ -4,7 +4,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.dependencies
-import utility.closet.libs
+import utility.closet.ext.libs
 
 class Spek2JavaPlugin : Plugin<Project> {
 

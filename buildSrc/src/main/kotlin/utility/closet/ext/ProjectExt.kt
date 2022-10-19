@@ -7,12 +7,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utility.closet.Versions
-import utility.closet.ext.addAndroidTestImplementation
-import utility.closet.addDebugImplementations
-import utility.closet.addImplementations
-import utility.closet.ext.addTestImplementation
-import utility.closet.applyIds
-import utility.closet.mapToProjectLibs
 import utility.closet.plugin.PluginConfig
 
 fun Project.dependenciesConfig(
