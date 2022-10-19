@@ -1,4 +1,4 @@
-package mzx.mifulbito.login.demo.data.repository
+package utility.closet.data.server.json
 
 import javax.inject.Inject
 import mzx.mifulbito.data.login.LoginRepository

@@ -34,5 +34,7 @@ include(
     "login-feature:domain",
     "login-feature:demo",
     "login-feature:data",
-    "login-feature:data:data-json"
+    "login-feature:data:data-server-json",
+    "login-feature:data:data-preferences"
+
 )

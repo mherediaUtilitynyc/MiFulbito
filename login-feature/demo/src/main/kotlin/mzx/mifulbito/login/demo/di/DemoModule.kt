@@ -13,11 +13,11 @@ import mzx.mifulbito.data.login.LoginRepository
 import mzx.mifulbito.data.login.RegisteredUserRepository
 import mzx.mifulbito.domain.login.RegisterLoginUseCase
 import mzx.mifulbito.domain.login.UseCase
-import mzx.mifulbito.login.demo.data.repository.AccountSettings
-import mzx.mifulbito.login.demo.data.repository.MockLoginRepository
-import mzx.mifulbito.login.demo.data.repository.MockRegisteredUserRepository
 import mzx.mifulbito.login.presentation.LoginEffectListener
 import mzx.mifulbito.login.presentation.LoginStateMachine
+import utility.closet.data.preference.AccountSettings
+import utility.closet.data.preference.MockRegisteredUserRepository
+import utility.closet.data.server.json.MockLoginRepository
 
 @Module
 @InstallIn(ViewModelComponent::class)

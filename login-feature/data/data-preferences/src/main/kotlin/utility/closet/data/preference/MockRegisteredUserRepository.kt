@@ -1,4 +1,4 @@
-package mzx.mifulbito.login.demo.data.repository
+package utility.closet.data.preference
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -32,7 +32,8 @@ class MockRegisteredUserRepository @Inject constructor(private val accountSettin
     override suspend fun tokenCredentials(): Pair<String, String>  =
         (accountSettings.userName()?:"") to (accountSettings.token()?:"")
 
-    class AccountSettingsImpl @Inject constructor(@ApplicationContext private val context: Context) : AccountSettings {
+    class AccountSettingsImpl @Inject constructor(@ApplicationContext private val context: Context) :
+        AccountSettings {
         private val userName = stringPreferencesKey("user_name")
         private val token = stringPreferencesKey("token")
         private val expirationDate = stringPreferencesKey("expiration_date")
