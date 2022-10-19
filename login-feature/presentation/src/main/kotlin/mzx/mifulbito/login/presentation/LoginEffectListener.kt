@@ -26,6 +26,7 @@ class LoginEffectListener @Inject constructor(
             is LoginStateMachine.SideEffect.LoadLogin -> viewModelScope.launch {
                 useCase.action(Unit).fold(errorMapper(onEvent), successMapper(onEvent))
             }
+            is LoginStateMachine.SideEffect.CheckingCredentials -> TODO()
         }
     }
 }

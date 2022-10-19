@@ -1,5 +1,5 @@
 plugins {
-    id("utility.closet.plugin.demo")
+    id("utility.closet.plugin.app")
     id("dagger.hilt.android.plugin")
 }
 

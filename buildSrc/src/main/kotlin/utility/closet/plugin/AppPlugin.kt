@@ -6,7 +6,7 @@ import utility.closet.androidAppConfig
 import utility.closet.dependenciesConfig
 import utility.closet.pluginConfig
 
-class DemoPlugin : Plugin<Project> {
+class AppPlugin : Plugin<Project> {
     private val pluginsIds = listOf(
         "com.android.application",
         "org.jetbrains.kotlin.android",
