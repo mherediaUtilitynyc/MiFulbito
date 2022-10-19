@@ -45,7 +45,8 @@ class AppPlugin : Plugin<Project> {
         "lifecycleKtx",
         "activityCompose",
         "appCompatVersion",
-        "hilt"
+        "hilt",
+        "hiltNavigationCompose"
     )
 
     private val debugImplementations = listOf("composeUiTooling", "composeUiTestManifest")

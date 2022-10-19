@@ -19,6 +19,7 @@ dependencyResolutionManagement {
             version("javaxInject", "1")
             version("appCompatVersion", "1.5.1")
             version("coroutinesTest", "1.6.4")
+            version("hiltNavigationCompose","1.0.0")
 
 
             alias("kotlin").to("org.jetbrains.kotlin", "kotlin-stdlib").versionRef("kotlinVersion")
@@ -62,6 +63,9 @@ dependencyResolutionManagement {
                 .versionRef("appCompatVersion")
             alias("coroutinesTest").to("org.jetbrains.kotlinx", "kotlinx-coroutines-test")
                 .versionRef("coroutinesTest")
+
+            alias("hiltNavigationCompose").to("androidx.hilt", "hilt-navigation-compose")
+                .versionRef("hiltNavigationCompose")
         }
     }
 }
