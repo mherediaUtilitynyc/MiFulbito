@@ -9,6 +9,17 @@ import utility.closet.pluginConfig
 
 class PresentationPlugin : Plugin<Project> {
 
+    override fun apply(project: Project) {
+        project.pluginConfig(pluginsIds)
+        project.androidLibConfig()
+        project.dependenciesConfig(
+            implementations = implementationIds,
+            debugImplementations = debugImplementations,
+            testImplementation = testImplementation,
+            androidTestImplementation = androidTestImplementation
+        )
+    }
+
     private val androidTestImplementation: List<String> = listOf(
         "extJunit",
         "expressoCore",
@@ -32,15 +43,4 @@ class PresentationPlugin : Plugin<Project> {
         "kotlin-kapt",
         "utility.closet.plugin.spek2Android"
     )
-
-    override fun apply(project: Project) {
-        project.pluginConfig(pluginsIds)
-        project.androidLibConfig()
-        project.dependenciesConfig(
-            implementations = implementationIds,
-            debugImplementations = debugImplementations,
-            testImplementation = testImplementation,
-            androidTestImplementation = androidTestImplementation
-        )
-    }
 }

@@ -7,6 +7,18 @@ import utility.closet.dependenciesConfig
 import utility.closet.pluginConfig
 
 class AppPlugin : Plugin<Project> {
+
+    override fun apply(project: Project) {
+        project.pluginConfig(pluginsIds)
+        project.androidAppConfig()
+        project.dependenciesConfig(
+            implementations = implementationIds,
+            debugImplementations = debugImplementations,
+            testImplementation = testImplementation,
+            androidTestImplementation = androidTestImplementation
+        )
+    }
+
     private val pluginsIds = listOf(
         "com.android.application",
         "org.jetbrains.kotlin.android",
@@ -34,15 +46,4 @@ class AppPlugin : Plugin<Project> {
         "composeUiTestJunit4",
         "mockkAndroid"
     )
-
-    override fun apply(project: Project) {
-        project.pluginConfig(pluginsIds)
-        project.androidAppConfig()
-        project.dependenciesConfig(
-            implementations = implementationIds,
-            debugImplementations = debugImplementations,
-            testImplementation = testImplementation,
-            androidTestImplementation = androidTestImplementation
-        )
-    }
 }
