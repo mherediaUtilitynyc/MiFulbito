@@ -1,9 +1,18 @@
-package utility.closet
+package utility.closet.ext
 
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import utility.closet.Versions
+import utility.closet.addAndroidTestImplementation
+import utility.closet.addDebugImplementations
+import utility.closet.addImplementations
+import utility.closet.addTestImplementation
+import utility.closet.applyIds
+import utility.closet.mapToProjectLibs
 
 fun Project.dependenciesConfig(
     implementations: List<String>,
@@ -73,4 +82,12 @@ fun Project.androidLibConfig() {
 
 fun Project.pluginConfig(pluginIds: List<String>) {
     plugins.applyIds(pluginIds = pluginIds)
+}
+
+fun Project.defineCompileOptions() {
+    project.tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
 }

@@ -2,11 +2,10 @@ package utility.closet.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import utility.closet.androidAppConfig
-import utility.closet.dependenciesConfig
-import utility.closet.pluginConfig
+import utility.closet.ext.androidAppConfig
+import utility.closet.ext.defineCompileOptions
+import utility.closet.ext.dependenciesConfig
+import utility.closet.ext.pluginConfig
 
 class AppPlugin : Plugin<Project> {
 
@@ -20,14 +19,6 @@ class AppPlugin : Plugin<Project> {
             androidTestImplementation = androidTestImplementation
         )
         project.defineCompileOptions()
-    }
-
-    private fun Project.defineCompileOptions() {
-        project.tasks.withType<KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
     }
 
     private val pluginsIds = listOf(
@@ -53,9 +44,6 @@ class AppPlugin : Plugin<Project> {
 
     private val testImplementation = listOf("junit", "mockk")
     private val androidTestImplementation = listOf(
-        "extJunit",
-        "expressoCore",
-        "composeUiTestJunit4",
-        "mockkAndroid"
+        "extJunit", "expressoCore", "composeUiTestJunit4", "mockkAndroid"
     )
 }
