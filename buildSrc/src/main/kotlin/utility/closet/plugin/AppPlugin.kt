@@ -2,6 +2,8 @@ package utility.closet.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utility.closet.androidAppConfig
 import utility.closet.dependenciesConfig
 import utility.closet.pluginConfig
@@ -17,6 +19,15 @@ class AppPlugin : Plugin<Project> {
             testImplementation = testImplementation,
             androidTestImplementation = androidTestImplementation
         )
+        project.defineCompileOptions()
+    }
+
+    private fun Project.defineCompileOptions() {
+        project.tasks.withType<KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
     }
 
     private val pluginsIds = listOf(

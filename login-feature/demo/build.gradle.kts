@@ -3,12 +3,6 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
 android {
     namespace = "mzx.mifulbito.login.demo"
 }
